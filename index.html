@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Moustafa 🦷🎂</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    overflow:hidden;
+    padding:20px;
+}
+
+.card{
+    background:rgba(255,255,255,0.96);
+    border-radius:25px;
+    padding:30px;
+    max-width:700px;
+    width:100%;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    z-index:2;
+}
+
+.cake{
+    font-size:80px;
+    margin-bottom:15px;
+    animation:bounce 2s infinite;
+}
+
+h1{
+    color:#ff4081;
+    font-size:2.3rem;
+    margin-bottom:20px;
+}
+
+.message{
+    color:#444;
+    line-height:1.8;
+    font-size:1.05rem;
+    margin-bottom:25px;
+}
+
+button{
+    background:#ff4081;
+    color:white;
+    border:none;
+    padding:14px 30px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+
+@media(max-width:600px){
+    .card{
+        padding:22px;
+    }
+
+    h1{
+        font-size:1.8rem;
+    }
+
+    .message{
+        font-size:0.95rem;
+    }
+
+    .cake{
+        font-size:65px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="card">
+
+    <div class="cake">🎂</div>
+
+    <h1>Happy Birthday Moustafa 🦷🎂</h1>
+
+    <div class="message">
+
+        Koll sana w enta tayb ya Asnannn 🦷
+        <br><br>
+
+        W yarab dayman mabsot w arfna b damak el te'eel 😂,
+        bs damak khafeef enharda bs 3ashan eid miladak 🎂🥳
+        <br><br>
+
+        Rabbena ywaf2ak w tefta7 3eyada,
+        te2fel ba3deha be youm 3ashan teegy teshtaghal 3andy fel cyber 🫵🏻💻😂
+        <br><br>
+
+        Mesh hatweel 3aleik tab3an 😌
+        Rabbena yedeeni el se7a w afdal adeek 3adeytak kol eid
+        <b>"10 Pounds"</b> 💸😂
+        <br><br>
+
+        <b>Enjoyyy ya Mosttt 💗🤙🏻</b>
+
+    </div>
+
+    <button onclick="showWish()">
+        Open Birthday Wish 🎁
+    </button>
+
+</div>
+
+<script>
+
+function showWish(){
+    alert("💗😂 Yarab dayman raseedy yefdal 5alsan 3ala Nour 💗😂");
+}
+
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+
+const confetti = [];
+
+for(let i = 0; i < 250; i++){
+    confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 8 + 3,
+        speed: Math.random() * 3 + 2,
+        color: `hsl(${Math.random()*360},100%,50%)`,
+        swing: Math.random() * 6
+    });
+}
+
+function drawConfetti(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    confetti.forEach(piece => {
+
+        ctx.fillStyle = piece.color;
+        ctx.fillRect(piece.x, piece.y, piece.size, piece.size);
+
+        piece.y += piece.speed;
+        piece.x += Math.sin(piece.y * 0.02) * piece.swing;
+
+        if(piece.y > canvas.height){
+            piece.y = -20;
+            piece.x = Math.random() * canvas.width;
+        }
+    });
+
+    requestAnimationFrame(drawConfetti);
+}
+
+drawConfetti();
+
+window.addEventListener("resize", resizeCanvas);
+
+</script>
+
+</body>
+</html>
